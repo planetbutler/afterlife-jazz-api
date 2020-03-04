@@ -23,7 +23,11 @@ const musicians = [{ first: 'Clark', last: 'Terry', nickName: 'Clark', axe: 'tru
 { first: 'Billie', last: 'Holiday', nickName: 'Lady Day', axe: 'vocalist', style: 'bebop', format: 'combo', dob: '12/14/1920', dod: '02/21/2015' },
 { first: 'Cabell', last: 'Calloway', nickName: 'Cab', axe: 'vocalist', style: 'bebop', format: 'combo', dob: '12/14/1920', dod: '02/21/2015' }]
 
-app.get('/musicians', cors(), (req, res) => res.send(musicians))
+app.get('/musicians', cors(), (req, res) => res.send(musicians));
+
+app.get('/musicians/:nickName', function (req, res) {
+    res.send('You requested: ' + req.params.nickName)
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
