@@ -25,8 +25,13 @@ const musicians = [{ first: 'Clark', last: 'Terry', nickName: 'Clark', axe: 'tru
 
 app.get('/musicians', cors(), (req, res) => res.send(musicians));
 
-app.get('/musicians/:nickName', function (req, res) {
-    res.send('You requested: ' + req.params.nickName)
+app.get('/musicians/:nickName', cors(), (req, res) => {
+    const musician = musicians.find(player => player.nickName === req.params.nickName);
+    if (musician) {
+        res.send(musician);
+    } else {
+        res.send('could not find!');
+    }
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
